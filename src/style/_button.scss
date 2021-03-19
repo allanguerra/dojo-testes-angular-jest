@@ -12,6 +12,7 @@
   border-radius: 8px;
 
   outline: none;
+  cursor: pointer;
 
   &:hover {
     background-color: $cor-primaria-3;
@@ -19,6 +20,13 @@
 
   &:active {
     background-color: $cor-primaria-2;
+  }
+
+  &:disabled {
+    background-color: $cor-neutra-100 !important;
+    color: $cor-neutra-500;
+    pointer-events: none;
+    cursor: not-allowed;
   }
 
   &.blue {

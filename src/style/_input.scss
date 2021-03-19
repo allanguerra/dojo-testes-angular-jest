@@ -1,0 +1,36 @@
+.todo-input {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+  &_label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  &_input {
+    outline: none;
+    padding: 12px 16px;
+    border: 1px solid $cor-secundaria-5;
+    border-radius: 8px;
+  }
+
+  &_erro {
+    display: none;
+    font-size: 14px;
+    color: $cor-sinalizadora-erro;
+  }
+
+  &.erro {
+    & .todo-input_input {
+      border-color: $cor-sinalizadora-erro;
+    }
+
+    & .todo-input_erro {
+      display: block;
+    }
+  }
+}
