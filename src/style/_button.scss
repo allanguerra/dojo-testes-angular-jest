@@ -1,0 +1,35 @@
+.todo-button {
+  padding: 8px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  color: $cor-neutra-0;
+
+  height: 48px;
+
+  background-color: $cor-primaria-1;
+
+  border: none;
+  border-radius: 8px;
+
+  outline: none;
+
+  &:hover {
+    background-color: $cor-primaria-3;
+  }
+
+  &:active {
+    background-color: $cor-primaria-2;
+  }
+
+  &.blue {
+    background-color: $cor-secundaria-5;
+
+    &:hover {
+      background-color: $cor-secundaria-4;
+    }
+  
+    &:active {
+      background-color: $cor-secundaria-6;
+    }
+  }
+}
