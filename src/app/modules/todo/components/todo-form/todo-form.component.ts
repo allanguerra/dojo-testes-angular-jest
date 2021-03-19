@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { TodoStatus } from 'src/app/modules/todo/enums/todo-status.enum';
 import { Todo } from 'src/app/modules/todo/models/todo.model';
+import { TodoService } from 'src/app/modules/todo/services/todo-service/todo.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -20,7 +21,8 @@ export class TodoFormComponent implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly todoService: TodoService
   ) { }
 
   ngOnInit() {
@@ -68,7 +70,15 @@ export class TodoFormComponent implements OnInit {
     const novaTask: Todo = Object.assign(new Todo(), this.todoForm.value);
     novaTask.status = TodoStatus.PENDENTE;
 
-    console.log(novaTask);
+    this.todoService.salvarNovaTarefa(novaTask).subscribe((todo: Todo) => {
+      this.salvando = false;
+      this.todoForm.reset();
+      console.log(`SUCCESS: ${todo}`);
+    }, (erro) => {
+      this.salvando = false;
+      this.todoForm.reset();
+      console.log(`ERROR: ${erro}`);
+    });
   }
 
   private atualizarTarefa(): void {}
