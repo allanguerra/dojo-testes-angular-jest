@@ -4,12 +4,29 @@
 
     <div class="todo-list">
 
-      <header class="todo-list_header">
+      <header class="todo-form_header">
         <h2>{{titulo}}</h2>
-        <button class="todo-button blue" (click)="acaoNovaTarefa()">voltar</button>
+        <button class="todo-button blue" (click)="acaoVoltar()">voltar</button>
       </header>
   
       <hr>
+
+      <form [formGroup]="todoForm" (ngSubmit)="salvar()">
+
+        <div class="todo-input" [ngClass]="{'erro': temErro(todoForm.get('title'))}">
+          <label for="title" class="todo-input_label">Tarefa</label>
+          <input type="text" id="title" name="title" class="todo-input_input" formControlName="title">
+          <span class="todo-input_erro">campo obrigatório</span>
+        </div>
+
+        <div class="todo-input" [ngClass]="{'erro': temErro(todoForm.get('description'))}">
+          <label for="description" class="todo-input_label">Descrição</label>
+          <input type="text" id="description" name="description" class="todo-input_input" formControlName="description">
+        </div>
+
+        <button class="todo-button blue" [disabled]="salvando || todoForm.invalid">Salvar Tarefa</button>
+
+      </form>
 
     </div>
     
