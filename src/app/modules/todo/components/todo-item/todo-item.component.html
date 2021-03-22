@@ -1,0 +1,20 @@
+<div class="todo-item" [ngClass]="{'pending': todo.status === 'pending'}">
+  
+  <div class="todo-item_content">
+    <button class="todo-item_content-done" [ngClass]="{'done': todo.status === 'done'}"
+     (click)="actionToggleDone()"></button>
+
+    <div class="todo-item_content-info">
+      <h3 class="todo-item_content-info-title">{{todo.title}}</h3>
+      <p class="todo-item_content-info-description">{{todo.description}}</p>
+    </div>
+  </div>
+
+  <div class="todo-item_actions">
+    <button class="todo-item_actions-button warning"
+    (click)="actionEdit()">Editar</button>
+    <button class="todo-item_actions-button danger"
+    (click)="actionDelete()">Excluir</button>
+  </div>
+
+</div>

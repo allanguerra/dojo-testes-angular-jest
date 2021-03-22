@@ -1,0 +1,100 @@
+@import '../../../../../style/cores';
+
+.todo-item {
+  padding: 0 16px;
+  margin-top: 16px;
+
+  border: 1px solid $cor-neutra-500;
+  border-radius: 8px;
+  border-left: 8px solid $cor-sinalizadora-sucesso;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &.pending {
+    border-left: 8px solid $cor-sinalizadora-erro;
+  }
+
+  &_content {
+    display: flex;
+    align-items: center;
+
+   &-done {
+    position: relative;
+
+    height: 22px;
+    width: 22px;
+    
+    border: 1px solid $cor-neutra-700;
+    border-radius: 4px;
+
+    background: $cor-neutra-50;
+    cursor: pointer;
+
+    &.done {
+      &::after {
+        position: absolute;
+        content: '';
+
+        height: 12px;
+        width: 12px;
+
+        top: 4px;
+        left: 4px;
+
+        border-radius: 2px;
+        background: $cor-sinalizadora-sucesso;
+      }
+    }
+   }
+
+   &-info {
+     margin-left: 16px;
+
+    &-title {
+      font-size: 20px;
+      color: $cor-neutra-700;
+    }
+    &-description {
+      font-size: 16px;
+      color: $cor-neutra-300;
+    }
+   }
+  }
+
+  &_actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &-button {
+      padding: 8px 16px;
+      margin-left: 8px;
+      font-size: 14px;
+
+      border: none;
+      border-radius: 4px;
+
+      cursor: pointer;
+
+      &.warning {
+        background: $cor-sinalizadora-aviso;
+        color: $cor-neutra-700;
+
+        &:hover {
+          background: darken($cor-sinalizadora-aviso, 5%);
+        }
+      }
+
+      &.danger {
+        background: $cor-sinalizadora-erro;
+        color: $cor-neutra-0;
+
+        &:hover {
+          background: darken($cor-sinalizadora-erro, 5%);
+        }
+      }
+    }
+  }
+}
