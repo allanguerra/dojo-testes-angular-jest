@@ -10,6 +10,12 @@
   
       <hr>
 
+      <section class="todo-list_content">
+
+        <app-todo-item *ngFor="let tarefa of tarefas" [todo]="tarefa"></app-todo-item>
+
+      </section>
+
     </div>
   </div>
 

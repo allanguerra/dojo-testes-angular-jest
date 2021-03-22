@@ -17,4 +17,8 @@ export class TodoService {
   public salvarNovaTarefa(tarefa: Todo): Observable<Todo> {
     return this.http.post<Todo>(api.todo, tarefa);
   }
+
+  public obterTarefas(): Observable<Array<Todo>> {
+    return this.http.get<Array<Todo>>(api.todo);
+  }
 }
