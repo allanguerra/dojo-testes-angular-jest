@@ -1,6 +1,8 @@
-import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+
 import { TodoStatus } from 'src/app/modules/todo/enums/todo-status.enum';
 import { Todo } from 'src/app/modules/todo/models/todo.model';
 import { TodoService } from 'src/app/modules/todo/services/todo-service/todo.service';
@@ -15,6 +17,7 @@ export class TodoFormComponent implements OnInit {
   public titulo: string = '';
   public todoForm: FormGroup;
   public salvando: boolean = false;
+  public todo: Todo;
 
   private acaoAtual: string;
 
@@ -28,8 +31,9 @@ export class TodoFormComponent implements OnInit {
   ngOnInit() {
     this.acaoAtual = this.route.snapshot.url[0].path;
 
-    this.definirTitulo();
     this.montarTodoForm();
+    this.carregarTodo();
+    this.definirTitulo();
   }
 
   public acaoVoltar(): void {
@@ -61,16 +65,29 @@ export class TodoFormComponent implements OnInit {
 
   private montarTodoForm(): void {
     this.todoForm = this.fb.group({
+      id: [null],
+      status: [null],
       title: [null, [Validators.required]],
       description: [null]
     });
+  }
+
+  private carregarTodo(): void {
+    if (this.acaoAtual === 'edit') {
+      this.route.paramMap.pipe(
+        switchMap(params => this.todoService.obterTarefaPorId(+params.get('id')))
+      ).subscribe((todo: Todo) => {
+        this.todo = todo;
+        this.todoForm.patchValue(todo);
+      });
+    }
   }
 
   private novaTarefa(): void {
     const novaTask: Todo = Object.assign(new Todo(), this.todoForm.value);
     novaTask.status = TodoStatus.PENDENTE;
 
-    this.todoService.salvarNovaTarefa(novaTask).subscribe((todo: Todo) => {
+    this.todoService.salvarNovaTarefa(novaTask).subscribe((_: Todo) => {
       this.salvando = false;
       this.todoForm.reset();
       alert('Tarefa criada com sucesso!');
@@ -82,6 +99,19 @@ export class TodoFormComponent implements OnInit {
     });
   }
 
-  private atualizarTarefa(): void {}
+  private atualizarTarefa(): void {
+    const todo = Object.assign(new Todo(), this.todoForm.value);
+
+    this.todoService.editarTarefa(todo).subscribe((_: Todo) => {
+      this.salvando = false;
+      this.todoForm.reset();
+      alert('Tarefa atualizada com sucesso!');
+      this.router.navigate(['todo-list']);
+    }, (_) => {
+      this.salvando = false;
+      this.todoForm.reset();
+      alert('Um erro aconteceu ao editar a tarefa, tente novamente por favor!');
+    });
+  }
 
 }
