@@ -73,11 +73,12 @@ export class TodoFormComponent implements OnInit {
     this.todoService.salvarNovaTarefa(novaTask).subscribe((todo: Todo) => {
       this.salvando = false;
       this.todoForm.reset();
-      console.log(`SUCCESS: ${todo}`);
-    }, (erro) => {
+      alert('Tarefa criada com sucesso!');
+      this.router.navigate(['todo-list']);
+    }, (_) => {
       this.salvando = false;
       this.todoForm.reset();
-      console.log(`ERROR: ${erro}`);
+      alert('Um erro aconteceu ao salvar a tarefa, tente novamente por favor!');
     });
   }
 
