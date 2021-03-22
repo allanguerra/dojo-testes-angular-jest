@@ -21,4 +21,16 @@ export class TodoService {
   public obterTarefas(): Observable<Array<Todo>> {
     return this.http.get<Array<Todo>>(api.todo);
   }
+
+  public obterTarefaPorId(id: number): Observable<Todo> {
+    return this.http.get<Todo>(`${api.todo}/${id}`);
+  }
+
+  public editarTarefa(todo: Todo): Observable<Todo> {
+    return this.http.put<Todo>(`${api.todo}/${todo.id}`, todo);
+  }
+
+  public deletarTraefa(id: number): Observable<void> {
+    return this.http.delete<void>(`${api.todo}/${id}`);
+  }
 }
