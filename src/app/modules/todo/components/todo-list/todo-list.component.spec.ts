@@ -1,4 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TodoItemComponent } from 'src/app/modules/todo/components/todo-item/todo-item.component';
+import { TodoService } from 'src/app/modules/todo/services/todo-service/todo.service';
 
 import { TodoListComponent } from './todo-list.component';
 
@@ -8,7 +13,9 @@ describe('TodoListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoListComponent ]
+      imports: [ ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule ],
+      providers: [ TodoService ],
+      declarations: [ TodoListComponent, TodoItemComponent ]
     })
     .compileComponents();
   }));
