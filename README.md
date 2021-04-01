@@ -1,27 +1,29 @@
-# DojoTestesAngular
+# DOJO - Testes Angular com Jest
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.29.
+Este projeto foi criado para a prática dos conceitos vistos sobre testes unitários no Angular utilizando o framework Jest.
 
-## Development server
+Este projeto é uma aplicação de ToDo List com as funcionalidades de:
+- Criar novas tarefas.
+- Editar tarefas existentes.
+- Excluir uma tarefa.
+- Concluir uma tarefa.
+- Retornar uma tarefa para pendente.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Para rodar o projeto
 
-## Code scaffolding
+- Instalar as dependências do projeto.
+  
+```
+npm run install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Rodar o mock de banco de dados (abrir uma segunda aba no terminal, este processo deve ficar rodando em paralelo ao projeto).
+  
+```
+npm run mock
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Rodar o projeto.
+```
+npm run start
+```
