@@ -72,8 +72,10 @@ describe('TodoFormComponent', () => {
     // 5. Verifica os resultados obtidos
     expect(salvarSpy).toHaveBeenCalledTimes(1);
     expect(salvarSpy).toHaveBeenCalledWith(
-      { id: null, title: 'any_todo_title', description: 'any_todo_description', status: 'pending' }
-    );
+      { id: null,
+        title: 'any_todo_title',
+        description: 'any_todo_description',
+        status: 'pending' });
   });
 });
 
