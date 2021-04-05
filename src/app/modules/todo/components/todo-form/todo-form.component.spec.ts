@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
-import { TodoFormComponent } from './todo-form.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TodoService } from 'src/app/modules/todo/services/todo-service/todo.service';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+
+import { TodoFormComponent } from './todo-form.component';
+import { TodoService } from 'src/app/modules/todo/services/todo-service/todo.service';
 import { Todo } from 'src/app/modules/todo/models/todo.model';
 import { TodoStatus } from 'src/app/modules/todo/enums/todo-status.enum';
-import { Component } from '@angular/core';
 
 describe('TodoFormComponent', () => {
   let component: TodoFormComponent;
@@ -71,11 +71,11 @@ describe('TodoFormComponent', () => {
 
     // 5. Verifica os resultados obtidos
     expect(salvarSpy).toHaveBeenCalledTimes(1);
-    expect(salvarSpy).toHaveBeenCalledWith(
-      { id: null,
-        title: 'any_todo_title',
-        description: 'any_todo_description',
-        status: 'pending' });
+    expect(salvarSpy)
+      .toHaveBeenCalledWith({ id: null,
+                              title: 'any_todo_title',
+                              description: 'any_todo_description',
+                              status: 'pending' });
   });
 });
 
